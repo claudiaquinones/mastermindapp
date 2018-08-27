@@ -29,13 +29,13 @@ public class MainPanel extends JPanel implements ActionListener{
     private static final int col = 6;
     private int currentRow = 0;
 
-    private int colorBoardXPos = 280;
-    private int colorBoardYPos = 500;
-
+    private int colorBoardXPos = 100; //changed from 280
+    private int colorBoardYPos = 300; //changed from 500
     private int colorBoardOffset = 40;
 
     private int userBoardXPos = 270;
     private int userBoardYPos = 60;
+
     private int responseBoardXPos = 520;
     private int responseBoardYPos = 65;
     private int responseBoardOffset = 30;
@@ -54,15 +54,24 @@ public class MainPanel extends JPanel implements ActionListener{
         initializeResponseBoard();
         initializeColorBoard();
 
-        Dimension buttonSize = new Dimension(200,40);
 
-        add(submit);
-        submit.setPreferredSize(buttonSize);
+        // Code for the buttons
+        this.setLayout(null);
+
+        int left = 20;
+        int top = 100;
+        int width = 200;
+        int height = 40;
+
+        submit.setBounds(left, top, width, height);
+        submit.setFocusable(false);
         submit.setFont(new Font("Arial", Font.PLAIN, 20));
+        add(submit);
 
-        add(quit);
-        quit.setPreferredSize(buttonSize);
+        quit.setBounds(left, top+height+20, width, height);
+        quit.setFocusable(false);
         quit.setFont(new Font("Arial", Font.PLAIN, 20));
+        add(quit);
 
         submit.addActionListener(this);
         quit.addActionListener(this);
@@ -107,12 +116,17 @@ public class MainPanel extends JPanel implements ActionListener{
 
     public void initializeColorBoard(){
         List<Color> userColors = game.getAvailableColors();
+        int index = 0;
 
-        for(int i = 0; i < userColors.size(); i++) {
-            Shape shape = new Ellipse2D.Double(colorBoardXPos + colorBoardOffset *i, colorBoardYPos, width, height);
-            colorBoard.add(shape);
-            colorMap.put((long) i, userColors.get(i));
+        for(int row = 0; row < userColors.size()/2; row++){
+            for(int col = 0; col < 2; col++){
+                Shape shape = new Ellipse2D.Double(colorBoardXPos + colorBoardOffset * col, colorBoardYPos + colorBoardOffset * row, width, height);
+                colorBoard.add(shape);
+                colorMap.put((long) index, userColors.get(index));
+                index++;
+            }
         }
+
     }
 
     public void actionPerformed(ActionEvent e)
