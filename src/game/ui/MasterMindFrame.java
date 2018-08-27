@@ -9,7 +9,7 @@ public class MasterMindFrame extends JFrame {
 
         JFrame frame = new JFrame("MasterMind Game");
         frame.add(new MainPanel());
-        frame.setSize(1000,1000);
+        frame.setSize(1000,600);
         frame.setResizable(false);
         frame.setVisible(true);
     }
