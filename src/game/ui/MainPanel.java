@@ -29,11 +29,11 @@ public class MainPanel extends JPanel implements ActionListener{
     private static final int col = 6;
     private int currentRow = 0;
 
-    private int colorBoardXPos = 100; //changed from 280
-    private int colorBoardYPos = 300; //changed from 500
+    private int colorBoardXPos = 75; //changed from 280
+    private int colorBoardYPos = 225; //changed from 500
     private int colorBoardOffset = 40;
 
-    private int userBoardXPos = 270;
+    private int userBoardXPos = 250;
     private int userBoardYPos = 60;
 
     private int responseBoardXPos = 520;
