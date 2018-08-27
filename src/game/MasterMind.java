@@ -67,7 +67,7 @@ public class MasterMind {
     private void updateGameStatus(Map<Response, Long> response) {
         if(response.get(Response.POSITIONAL_MATCH) == SIZE)
             gameStatus = Status.WON;
-        else if(tries >= 20)
+        else if(tries >= 10)
             gameStatus = Status.LOST;
     }
 

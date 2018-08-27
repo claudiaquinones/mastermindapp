@@ -25,7 +25,7 @@ public class MainPanel extends JPanel implements ActionListener{
     private int totalGuesses = 0;
     private int responseTotal = 0;
 
-    private static final int row = 21;
+    private static final int row = 11;
     private static final int col = 6;
     private int currentRow = 0;
 
