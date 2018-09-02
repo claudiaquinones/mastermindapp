@@ -25,12 +25,12 @@ public class MainPanel extends JPanel implements ActionListener{
     private int totalGuesses = 0;
     private int responseTotal = 0;
 
-    private static final int row = 11;
+    private static final int row = 16;
     private static final int col = 6;
     private int currentRow = 0;
 
-    private int colorBoardXPos = 75; //changed from 280
-    private int colorBoardYPos = 225; //changed from 500
+    private int colorBoardXPos = 75;
+    private int colorBoardYPos = 225;
     private int colorBoardOffset = 40;
 
     private int userBoardXPos = 250;
@@ -43,6 +43,11 @@ public class MainPanel extends JPanel implements ActionListener{
     private int width = 30;
     private int height = 30;
 
+    private int buttonLeft = 20;
+    private int buttonTop = 100;
+    private int buttonWidth = 200;
+    private int buttonHeight = 40;
+
     private JButton submit = new JButton("Submit your guess");
     private JButton quit = new JButton("Give up");
     public MouseListener mouseListener;
@@ -54,27 +59,9 @@ public class MainPanel extends JPanel implements ActionListener{
         initializeResponseBoard();
         initializeColorBoard();
 
-
-        // Code for the buttons
         this.setLayout(null);
-
-        int left = 20;
-        int top = 100;
-        int width = 200;
-        int height = 40;
-
-        submit.setBounds(left, top, width, height);
-        submit.setFocusable(false);
-        submit.setFont(new Font("Arial", Font.PLAIN, 20));
-        add(submit);
-
-        quit.setBounds(left, top+height+20, width, height);
-        quit.setFocusable(false);
-        quit.setFont(new Font("Arial", Font.PLAIN, 20));
-        add(quit);
-
-        submit.addActionListener(this);
-        quit.addActionListener(this);
+        initializeButton(submit, buttonLeft, buttonTop, buttonWidth, buttonHeight);
+        initializeButton(quit, buttonLeft, buttonTop+buttonHeight+20, buttonWidth, buttonHeight);
 
         mouseListener = new MouseAdapter() {
             @Override
@@ -92,6 +79,15 @@ public class MainPanel extends JPanel implements ActionListener{
             }
         };
         addMouseListener(mouseListener);
+    }
+
+    private void initializeButton(JButton button, int left, int top, int width, int height) {
+      button.setBounds(left, top, width, height);
+      button.setFocusable(false);
+      button.setFont(new Font("Arial", Font.PLAIN, 20));
+
+      add(button);
+      button.addActionListener(this);
     }
 
     private void initializeResponseBoard() {
@@ -171,11 +167,6 @@ public class MainPanel extends JPanel implements ActionListener{
         }
     }
 
-    public Dimension getPreferredSize() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Dimension(screenSize.width/2,screenSize.height);
-    }
-
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
@@ -196,7 +187,7 @@ public class MainPanel extends JPanel implements ActionListener{
             graphics2D.fill(shape);
             graphics2D.setColor(Color.BLACK);
             graphics2D.draw(shape);
-            graphics2D.drawRect(userBoardXPos - colorBoardOffset/2,  (currentRow)*colorBoardOffset + userBoardYPos + height + (userBoardXPos - colorBoardOffset)/40 , width*15, 1);
+            graphics2D.drawRect(userBoardXPos - colorBoardOffset/2,  (currentRow)*colorBoardOffset + userBoardYPos + height + (userBoardXPos - colorBoardOffset)/40 , width*9, 1);
             index++;
         }
 
@@ -223,6 +214,3 @@ public class MainPanel extends JPanel implements ActionListener{
         remove(quit);
     }
 }
-
-
-
