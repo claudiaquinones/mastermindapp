@@ -34,8 +34,7 @@ public class MasterMind {
         return gameStatus;
     }
 
-    public List<Color> getAvailableColors()
-    {
+    public List<Color> getAvailableColors() {
         return Arrays.asList(Color.RED, Color.GREEN, Color.BLUE, Color.BLACK, Color.PINK, Color.GRAY, Color.CYAN, Color.WHITE, Color.YELLOW, Color.MAGENTA);
     }
 
@@ -67,19 +66,18 @@ public class MasterMind {
     private void updateGameStatus(Map<Response, Long> response) {
         if(response.get(Response.POSITIONAL_MATCH) == SIZE)
             gameStatus = Status.WON;
-        else if(tries >= 10)
+        else if(tries >= 15)
             gameStatus = Status.LOST;
     }
 
     protected List<Color> generateRandomColors(Random random) {
         List<Color> randomColors = new ArrayList<>(getAvailableColors());
 
-        while(randomColors.size()> SIZE)
-        {
+        while(randomColors.size() > SIZE){
             randomColors.remove(random.nextInt(SIZE));
-            Collections.shuffle(randomColors, random);
         }
 
+        Collections.shuffle(randomColors, random);
         return randomColors;
     }
 }
